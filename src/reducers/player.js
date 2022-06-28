@@ -1,4 +1,4 @@
-import { SUBMIT_LOGIN_FORM } from '../actions';
+import { SUBMIT_LOGIN_FORM, EXPORT_TOKEN } from '../actions';
 
 const initialState = {
   name: '',
@@ -13,6 +13,11 @@ const player = (state = initialState, action) => {
     return {
       ...state,
       name: action.payload.name,
+    };
+  case EXPORT_TOKEN:
+    return {
+      ...state,
+      token: action.payload,
     };
   default:
     return state;
