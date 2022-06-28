@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getToken } from '../actions';
+import md5 from 'crypto-js/md5';
+import { getToken, submitLoginForm } from '../actions';
 
 class Login extends React.Component {
   state = {
@@ -11,8 +12,11 @@ class Login extends React.Component {
   };
 
   handleClick = () => {
-    const { getTokens, history } = this.props;
+    const { getTokens, history, submitEmailAndNames } = this.props;
+    const { email, nome } = this.state;
+    const gravatarEmail = md5(email).toString();
     getTokens();
+    submitEmailAndNames({ gravatarEmail, nome });
     history.push('/jogo');
   }
 
@@ -74,12 +78,15 @@ class Login extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   getTokens: () => dispatch(getToken()),
+  submitEmailAndNames: (param) => dispatch(submitLoginForm(param)),
 });
 
-export default connect(null, mapDispatchToProps)(Login);
 Login.propTypes = {
   getTokens: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  submitEmailAndNames: PropTypes.func.isRequired,
 };
+
+export default connect(null, mapDispatchToProps)(Login);
