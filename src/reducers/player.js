@@ -3,7 +3,7 @@ import { SUBMIT_LOGIN_FORM, EXPORT_TOKEN } from '../actions';
 const initialState = {
   name: '',
   assertions: null,
-  score: null,
+  score: 0,
   gravatarEmail: '',
 };
 
@@ -12,7 +12,8 @@ const player = (state = initialState, action) => {
   case SUBMIT_LOGIN_FORM:
     return {
       ...state,
-      name: action.payload.name,
+      name: action.payload.nome,
+      gravatarEmail: action.payload.gravatarEmail,
     };
   case EXPORT_TOKEN:
     return {
