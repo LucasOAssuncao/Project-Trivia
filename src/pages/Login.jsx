@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 class Login extends React.Component {
   state = {
@@ -25,6 +25,7 @@ class Login extends React.Component {
   };
 
   render() {
+    const { history } = this.props;
     const { email, nome, lockButton } = this.state;
     return (
       <div>
@@ -52,6 +53,13 @@ class Login extends React.Component {
         >
           Play
         </button>
+        <button
+          type="button"
+          data-testid="btn-settings"
+          onClick={ () => history.push('/settings') }
+        >
+          Settings
+        </button>
       </div>
     );
   }
@@ -60,3 +68,6 @@ class Login extends React.Component {
 const mapDispatchToProps = () => ({});
 
 export default connect(null, mapDispatchToProps)(Login);
+Login.propTypes = {
+  history: PropTypes.string.isRequired,
+};
