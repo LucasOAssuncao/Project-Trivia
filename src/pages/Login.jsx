@@ -9,6 +9,10 @@ class Login extends React.Component {
     lockButton: true,
   };
 
+  handleClick = () => {
+
+  }
+
   handleChange = ({ target }) => {
     const { name, value } = target;
     this.setState({ [name]: value });
@@ -48,7 +52,7 @@ class Login extends React.Component {
           type="button"
           data-testid="btn-play"
           disabled={ lockButton }
-          //   onClick={ this.handleSubmit }
+          onClick={ this.handleClick }
         >
           Play
         </button>
@@ -57,6 +61,8 @@ class Login extends React.Component {
   }
 }
 
-const mapDispatchToProps = () => ({});
+const mapDispatchToProps = () => ({
+
+});
 
 export default connect(null, mapDispatchToProps)(Login);
