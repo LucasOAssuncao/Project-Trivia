@@ -8,6 +8,8 @@ class Game extends React.Component {
     questions: [{ incorrect_answers: [], category: '', question: [] }],
     index: 0,
     respondido: false,
+    timer: 30,
+    interval: '',
   };
 
   async componentDidMount() {
@@ -25,6 +27,28 @@ class Game extends React.Component {
     } else {
       this.setState({ questions: final.results });
     }
+
+    const interval = setInterval(this.timer, +'1000');
+    this.setState({ interval });
+  }
+
+  timer = () => {
+    const { timer, interval } = this.state;
+    if (timer === 0) {
+      clearInterval(interval);
+      this.buttonDisabler();
+    } else {
+      this.setState((previousState) => ({
+        timer: previousState.timer - 1,
+      }));
+    }
+  }
+
+  buttonDisabler = () => {
+    const buttons = document.getElementsByTagName('button');
+    buttons.forEach((btn) => {
+      btn.disabled = true;
+    });
   }
 
   randomizeAnswers = () => {
@@ -57,7 +81,7 @@ class Game extends React.Component {
   };
 
   render() {
-    const { questions, index } = this.state;
+    const { questions, index, timer } = this.state;
     const { email, name, score } = this.props;
     const array = this.randomizeAnswers();
     return (
@@ -71,6 +95,9 @@ class Game extends React.Component {
           <h3 data-testid="header-player-name">{name}</h3>
           <h4 data-testid="header-score">{score}</h4>
         </header>
+        <div>
+          <p>{ timer }</p>
+        </div>
         <div>
           <h1 data-testid="question-category">{questions[index].category}</h1>
           <p data-testid="question-text">{questions[index].question}</p>
