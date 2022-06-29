@@ -18,7 +18,7 @@ const player = (state = initialState, action) => {
   case EXPORT_TOKEN:
     return {
       ...state,
-      token: action.payload,
+      tokenObj: action.payload,
     };
   default:
     return state;

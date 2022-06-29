@@ -11,11 +11,11 @@ class Login extends React.Component {
     lockButton: true,
   };
 
-  handleClick = () => {
+  handleClick = async () => {
     const { getTokens, history, submitEmailAndNames } = this.props;
     const { email, nome } = this.state;
+    await getTokens();
     const gravatarEmail = md5(email).toString();
-    getTokens();
     submitEmailAndNames({ gravatarEmail, nome });
     history.push('/jogo');
   }
@@ -29,7 +29,6 @@ class Login extends React.Component {
     this.setState({ lockButton: true });
     if (finalValidation && email && nome) {
       this.setState({ lockButton: false });
-      console.log(nome.length);
     } else {
       this.setState({ lockButton: true });
     }

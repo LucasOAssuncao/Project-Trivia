@@ -12,9 +12,18 @@ const exportToken = (param) => ({
 });
 
 export const getToken = () => async (dispatch) => {
-  const response = await fetch('https://opentdb.com/api_token.php?command=request');
-  const data = await response.json();
-  const { token } = data;
-  localStorage.setItem('token', token);
-  dispatch(exportToken(token));
+  await fetch('https://opentdb.com/api_token.php?command=request')
+    .then((response) => response.json())
+    .then((data) => {
+      dispatch(exportToken(data));
+      localStorage.setItem('token', data.token);
+    });
 };
+
+// export const fetchQuestions = (token) => async (dispatch) => {
+//   const response = await fetch(
+//     `https://opentdb.com/api.php?amount=5&token=${token}`,
+//   );
+//   const data = await response.json();
+//   const final = await data;
+// }
