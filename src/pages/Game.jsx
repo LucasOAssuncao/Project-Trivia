@@ -11,7 +11,7 @@ class Game extends React.Component {
   async componentDidMount() {
     const { token, history } = this.props;
     const response = await fetch(
-      `https://opentdb.com/api.php?amount=${+'5'}&token=${token}`,
+      `https://opentdb.com/api.php?amount='5'&token=${token}`,
     );
     const data = await response.json();
     const final = await data;
