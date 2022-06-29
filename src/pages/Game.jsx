@@ -45,10 +45,10 @@ class Game extends React.Component {
   }
 
   buttonDisabler = () => {
-    const buttons = document.getElementsByTagName('button');
-    buttons.forEach((btn) => {
-      btn.disabled = true;
-    });
+    const buttons = document.getElementsByClassName('answers');
+    for (let i = 0; i < buttons.length; i += 1) {
+      buttons[i].disabled = true;
+    }
   }
 
   randomizeAnswers = () => {
@@ -59,7 +59,7 @@ class Game extends React.Component {
         key={ i }
         data-testid={ `wrong-answer-${i}` }
         type="button"
-        className={ respondido && 'incorrectAnswer' }
+        className={ `answers ${respondido ? 'incorrectAnswer' : ''}` }
         onClick={ () => this.setState({ respondido: true }) }
       >
         {e}
@@ -70,7 +70,7 @@ class Game extends React.Component {
         type="button"
         data-testid="correct-answer"
         key="4"
-        className={ respondido && 'correctAnswer' }
+        className={ `answers ${respondido ? 'correctAnswer' : ''}` }
         onClick={ () => this.setState({ respondido: true }) }
       >
         {questions[index].correct_answer}
