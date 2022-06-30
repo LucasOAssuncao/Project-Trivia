@@ -40,6 +40,7 @@ class Game extends React.Component {
     if (timer === 0) {
       clearInterval(interval);
       this.buttonDisabler();
+      this.setState({ respondido: true });
     } else {
       this.setState((previousState) => ({
         timer: previousState.timer - 1,
@@ -53,6 +54,18 @@ class Game extends React.Component {
       buttons[i].disabled = true;
     }
   };
+
+  btnNext = () => {
+    this.setState((prevState) => ({
+      index: prevState.index + 1,
+      respondido: false,
+    }));
+    this.randomizeAnswers();
+    const buttons = document.getElementsByClassName('answers');
+    for (let i = 0; i < buttons.length; i += 1) {
+      buttons[i].disabled = false;
+    }
+  }
 
   randomizeAnswers = () => {
     const { index, questions } = this.state;
@@ -88,10 +101,12 @@ class Game extends React.Component {
     if (textContent === questions[index].correct_answer) {
       exportCounts(+'10' + timer * difficulty[questions[index].difficulty]);
     }
+    this.buttonDisabler();
+    // this.setState({ respondido: true });
   };
 
   render() {
-    const { questions, index, timer, answersBtns } = this.state;
+    const { questions, index, timer, answersBtns, respondido } = this.state;
     const { email, name, score } = this.props;
     return (
       <div>
@@ -126,6 +141,15 @@ class Game extends React.Component {
                 {e.element}
               </button>
             ))}
+            {respondido && (
+              <button
+                type="button"
+                data-testid="btn-next"
+                onClick={ this.btnNext }
+              >
+                Next
+              </button>
+            )}
           </div>
         </div>
       </div>
