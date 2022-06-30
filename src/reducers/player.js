@@ -1,8 +1,8 @@
-import { SUBMIT_LOGIN_FORM, EXPORT_TOKEN, EXPORT_COUNT } from '../actions';
+import { SUBMIT_LOGIN_FORM, EXPORT_TOKEN, EXPORT_COUNT, RESET } from '../actions';
 
 const initialState = {
   name: '',
-  assertions: null,
+  assertions: 0,
   score: 0,
   gravatarEmail: '',
 };
@@ -24,6 +24,13 @@ const player = (state = initialState, action) => {
     return {
       ...state,
       score: state.score + action.payload,
+      assertions: state.assertions + 1,
+    };
+  case RESET:
+    return {
+      ...state,
+      score: 0,
+      assertions: 0,
     };
   default:
     return state;
