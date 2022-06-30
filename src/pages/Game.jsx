@@ -74,6 +74,7 @@ class Game extends React.Component {
     }
   }
 
+  // req 11 e 12
   randomizeAnswers = () => {
     const { index, questions } = this.state;
 
