@@ -1,6 +1,7 @@
 export const SUBMIT_LOGIN_FORM = 'SUBMIT_LOGIN_FORM';
 export const EXPORT_TOKEN = 'EXPORT_TOKEN';
 export const EXPORT_COUNT = 'EXPORT_COUNT';
+export const RESET = 'RESET';
 
 export const submitLoginForm = (param) => ({
   type: SUBMIT_LOGIN_FORM,
@@ -21,7 +22,11 @@ export const getToken = () => async (dispatch) => {
     });
 };
 
-export const exportCount = (param) => ({
+export const exportCount = (param1) => ({
   type: EXPORT_COUNT,
-  payload: param,
+  payload: param1,
+});
+
+export const resetCountAndAssertions = () => ({
+  type: RESET,
 });
