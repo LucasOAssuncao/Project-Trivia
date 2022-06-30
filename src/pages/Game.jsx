@@ -27,10 +27,8 @@ class Game extends React.Component {
       history.push('/');
     } else {
       this.setState({ questions: final.results });
-      // eslint-disable-next-line react/destructuring-assignment
-      console.log(this.state.questions);
     }
-
+    // fix
     const interval = setInterval(this.timer, +'1000');
     this.setState({ interval });
     this.randomizeAnswers();
