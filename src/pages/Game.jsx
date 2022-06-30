@@ -32,7 +32,7 @@ class Game extends React.Component {
     const interval = setInterval(this.timer, +'1000');
     this.setState({ interval });
     this.randomizeAnswers();
-    console.log(this.state);
+    // console.log(this.state);
   }
 
   timer = () => {
@@ -56,14 +56,22 @@ class Game extends React.Component {
   };
 
   btnNext = () => {
+    const { index } = this.state;
+    const { history } = this.props;
     this.setState((prevState) => ({
       index: prevState.index + 1,
       respondido: false,
+      timer: 30,
     }));
     this.randomizeAnswers();
     const buttons = document.getElementsByClassName('answers');
+    // console.log(buttons);
     for (let i = 0; i < buttons.length; i += 1) {
       buttons[i].disabled = false;
+    }
+    this.timer();
+    if (index + 1 > +'4') {
+      history.push('/feedback');
     }
   }
 
@@ -77,7 +85,9 @@ class Game extends React.Component {
     answers.push({ element: questions[index].correct_answer, index: 4 });
     const randomize = answers.sort(() => Math.random() - +'0.5');
     this.setState({ answersBtns: randomize });
-    console.log(questions[index]);
+    // console.log(questions[index]);
+    console.log(answers);
+    console.log(questions[index].incorrect_answers);
   };
 
   correctAnswer = (i) => {
@@ -98,11 +108,15 @@ class Game extends React.Component {
     const { timer, questions, index } = this.state;
     const { exportCounts } = this.props;
     const difficulty = { hard: 3, medium: 2, easy: 1 };
+    console.log(questions[index]);
+    console.log('click', textContent);
+    console.log('correct', questions[index].correct_answer);
     if (textContent === questions[index].correct_answer) {
-      exportCounts(+'10' + timer * difficulty[questions[index].difficulty]);
+      console.log('olá');
+      exportCounts(+'10' + (timer * difficulty[questions[index].difficulty]));
     }
+    // console.log(difficulty[questions[index].difficulty], timer);
     this.buttonDisabler();
-    // this.setState({ respondido: true });
   };
 
   render() {
@@ -141,6 +155,7 @@ class Game extends React.Component {
                 {e.element}
               </button>
             ))}
+            {console.log(answersBtns)}
             {respondido && (
               <button
                 type="button"
