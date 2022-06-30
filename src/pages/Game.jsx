@@ -161,11 +161,11 @@ class Game extends React.Component {
 }
 
 Game.propTypes = {
-  email: PropTypes.string.isRequired,
   exportCounts: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  email: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   score: PropTypes.number.isRequired,
 };
