@@ -1,4 +1,4 @@
-import { SUBMIT_LOGIN_FORM, EXPORT_TOKEN } from '../actions';
+import { SUBMIT_LOGIN_FORM, EXPORT_TOKEN, EXPORT_COUNT } from '../actions';
 
 const initialState = {
   name: '',
@@ -19,6 +19,11 @@ const player = (state = initialState, action) => {
     return {
       ...state,
       tokenObj: action.payload,
+    };
+  case EXPORT_COUNT:
+    return {
+      ...state,
+      score: state.score + action.payload,
     };
   default:
     return state;
