@@ -151,6 +151,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   exportCounts: (param) => dispatch(exportCount(param)),
+  //
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);
