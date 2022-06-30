@@ -28,7 +28,6 @@ class Game extends React.Component {
     } else {
       this.setState({ questions: final.results });
     }
-    // fix
     const interval = setInterval(this.timer, +'1000');
     this.setState({ interval });
     this.randomizeAnswers();
@@ -83,9 +82,6 @@ class Game extends React.Component {
     answers.push({ element: questions[index].correct_answer, index: 4 });
     const randomize = answers.sort(() => Math.random() - +'0.5');
     this.setState({ answersBtns: randomize });
-    // console.log(questions[index]);
-    console.log(answers);
-    console.log(questions[index].incorrect_answers);
   };
 
   correctAnswer = (i) => {
@@ -106,14 +102,9 @@ class Game extends React.Component {
     const { timer, questions, index } = this.state;
     const { exportCounts } = this.props;
     const difficulty = { hard: 3, medium: 2, easy: 1 };
-    console.log(questions[index]);
-    console.log('click', textContent);
-    console.log('correct', questions[index].correct_answer);
     if (textContent === questions[index].correct_answer) {
-      console.log('olá');
       exportCounts(+'10' + (timer * difficulty[questions[index].difficulty]));
     }
-    // console.log(difficulty[questions[index].difficulty], timer);
     this.buttonDisabler();
   };
 
@@ -153,7 +144,6 @@ class Game extends React.Component {
                 {e.element}
               </button>
             ))}
-            {console.log(answersBtns)}
             {respondido && (
               <button
                 type="button"
