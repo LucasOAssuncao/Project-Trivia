@@ -27,12 +27,13 @@ class Game extends React.Component {
       history.push('/');
     } else {
       this.setState({ questions: final.results });
+      // eslint-disable-next-line react/destructuring-assignment
+      console.log(this.state.questions);
     }
 
     const interval = setInterval(this.timer, +'1000');
     this.setState({ interval });
     this.randomizeAnswers();
-    // console.log(this.state);
   }
 
   timer = () => {
@@ -58,14 +59,12 @@ class Game extends React.Component {
   btnNext = () => {
     const { index } = this.state;
     const { history } = this.props;
-    this.setState((prevState) => ({
-      index: prevState.index + 1,
+    this.setState({
+      index: index + 1,
       respondido: false,
       timer: 30,
-    }));
-    this.randomizeAnswers();
+    }, () => this.randomizeAnswers());
     const buttons = document.getElementsByClassName('answers');
-    // console.log(buttons);
     for (let i = 0; i < buttons.length; i += 1) {
       buttons[i].disabled = false;
     }
@@ -75,6 +74,7 @@ class Game extends React.Component {
     }
   }
 
+  // req 11 e 12
   randomizeAnswers = () => {
     const { index, questions } = this.state;
 
