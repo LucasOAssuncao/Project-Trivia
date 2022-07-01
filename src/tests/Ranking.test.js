@@ -8,17 +8,17 @@ const gravatar = 'https://www.gravatar.com/avatar/';
 const STORE_TEST = [
   {
     name: 'jogador1',
-    picture: `${gravatar}jogador1`,
+    picture: `https://www.gravatar.com/avatar/`,
     score: 101
   },
   {
     name: 'jogador2',
-    picture: `${gravatar}jogador2`,
+    picture: `https://www.gravatar.com/avatar/`,
     score: 210
   },
   {
     name: 'jogador3',
-    picture: `${gravatar}jogador3`,
+    picture: `https://www.gravatar.com/avatar/`,
     score: 90
   }
 ];
