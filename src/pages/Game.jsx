@@ -56,11 +56,14 @@ class Game extends React.Component {
   btnNext = () => {
     const { index } = this.state;
     const { history } = this.props;
-    this.setState({
-      index: index + 1,
-      respondido: false,
-      timer: 30,
-    }, () => this.randomizeAnswers());
+    this.setState(
+      {
+        index: index + 1,
+        respondido: false,
+        timer: 30,
+      },
+      () => this.randomizeAnswers(),
+    );
     const buttons = document.getElementsByClassName('answers');
     for (let i = 0; i < buttons.length; i += 1) {
       buttons[i].disabled = false;
@@ -69,9 +72,8 @@ class Game extends React.Component {
     if (index + 1 > +'4') {
       history.push('/feedback');
     }
-  }
+  };
 
-  // req 11 e 12
   randomizeAnswers = () => {
     const { index, questions } = this.state;
 
@@ -103,31 +105,46 @@ class Game extends React.Component {
     const { exportCounts } = this.props;
     const difficulty = { hard: 3, medium: 2, easy: 1 };
     if (textContent === questions[index].correct_answer) {
-      exportCounts(+'10' + (timer * difficulty[questions[index].difficulty]));
+      exportCounts(+'10' + timer * difficulty[questions[index].difficulty]);
     }
     this.buttonDisabler();
+  };
+
+  decodeEntity = (inputStr) => {
+    const textarea = document.createElement('textarea');
+    textarea.innerHTML = inputStr;
+    return textarea.value;
   };
 
   render() {
     const { questions, index, timer, answersBtns, respondido } = this.state;
     const { email, name, score } = this.props;
     return (
-      <div>
-        <header>
+      <div className="game-father">
+        <header className="game-header">
           <img
             src={ `https://www.gravatar.com/avatar/${email}` }
             alt="imagem de avatar"
             data-testid="header-profile-picture"
           />
           <h3 data-testid="header-player-name">{name}</h3>
-          <h4 data-testid="header-score">{score}</h4>
+          <div className="score trivia-font">
+            <h4 data-testid="header-score">{score}</h4>
+          </div>
         </header>
-        <div>
+        <div className="game-timer trivia-font">
           <p>{timer}</p>
         </div>
-        <div>
-          <h1 data-testid="question-category">{questions[index].category}</h1>
-          <p data-testid="question-text">{questions[index].question}</p>
+        <div className="game-texts">
+          <h1
+            data-testid="question-category"
+            className="trivia-font font-black"
+          >
+            {questions[index].category}
+          </h1>
+          <p data-testid="question-text">
+            {this.decodeEntity(questions[index].question)}
+          </p>
           <div data-testid="answer-options">
             {answersBtns.map((e, i) => (
               <button
@@ -146,6 +163,7 @@ class Game extends React.Component {
             ))}
             {respondido && (
               <button
+                className="button-form"
                 type="button"
                 data-testid="btn-next"
                 onClick={ this.btnNext }

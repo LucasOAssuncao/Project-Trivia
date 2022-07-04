@@ -18,7 +18,7 @@ class Login extends React.Component {
     const gravatarEmail = md5(email).toString();
     submitEmailAndNames({ gravatarEmail, nome });
     history.push('/jogo');
-  }
+  };
 
   handleChange = ({ target }) => {
     const { name, value } = target;
@@ -38,9 +38,11 @@ class Login extends React.Component {
     const { history } = this.props;
     const { email, nome, lockButton } = this.state;
     return (
-      <div>
+      <div className="login-father">
+        <h1 className="trivia-font font-red">Trivia</h1>
         <input
           data-testid="input-player-name"
+          className="inputs-login"
           name="nome"
           type="text"
           placeholder="Nome"
@@ -49,6 +51,7 @@ class Login extends React.Component {
         />
         <input
           data-testid="input-gravatar-email"
+          className="inputs-login"
           name="email"
           type="email"
           placeholder="Email"
@@ -56,6 +59,7 @@ class Login extends React.Component {
           onChange={ this.handleChange }
         />
         <button
+          className="button-form"
           type="button"
           data-testid="btn-play"
           disabled={ lockButton }
@@ -64,6 +68,7 @@ class Login extends React.Component {
           Play
         </button>
         <button
+          className="button-form"
           type="button"
           data-testid="btn-settings"
           onClick={ () => history.push('/settings') }

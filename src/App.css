@@ -1,33 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  background-image: url('./images/img1.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: 'Lato', sans-serif;
 }
-
 .App {
   text-align: center;
 }
-
 .App-logo {
   height: 15vmin;
   pointer-events: none;
 }
-
 .red-border {
   border: 1px solid red;
 }
-
 .green-border {
   border: 1px solid green;
 }
-
-@media ( prefers-reduced-motion : no-preference ) {
-
+@media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: shake infinite 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
   }
 }
-
 .App-header {
   align-items: center;
   background-color: #282c34;
@@ -38,36 +37,219 @@ body {
   justify-content: center;
   min-height: 100vh;
 }
-
 .App-link {
   color: #61dafb;
 }
-
 @keyframes shake {
-
-  10%, 90% {
+  10%,
+  90% {
     transform: translate3d(-1px, 0, 0);
   }
-
-  20%, 80% {
+  20%,
+  80% {
     transform: translate3d(2px, 0, 0);
   }
-
-  30%, 50%, 70% {
+  30%,
+  50%,
+  70% {
     transform: translate3d(-4px, 0, 0);
   }
-
-  40%, 60% {
+  40%,
+  60% {
     transform: translate3d(4px, 0, 0);
   }
 }
-
 .correctAnswer {
   background-color: rgb(6, 240, 15);
   border: 3px solid rgb(6, 240, 15);
 }
-
 .incorrectAnswer {
   background-color: red;
   border: 3px solid red;
+}
+
+/* LOGIN */
+
+
+.login-father {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 50vh;
+  min-width: 50vh;
+  max-width: 300px;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 10%;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.356);
+  /* box-shadow: 0 8px 20px 0 rgba(248, 248, 248, 0.557); */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.inputs-login {
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  display: block;
+  width: 70%;
+  border: 3px solid rgba(255, 255, 255, 0.811);
+  padding: 6px;
+  color: currentColor;
+  background-color:white;
+  border-radius: 5px;
+}
+
+.button-form {
+  appearance: none;
+  background-color: #000000;
+  border-width: 0;
+  box-sizing: border-box;
+  color: #ffffff;
+  height: 35px;
+  font-family: 'Lato', sans-serif;
+  width:90px;
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 5px;
+  font-weight: 500;
+  letter-spacing: 0;
+  margin-top: 10px;
+  opacity: 1;
+  outline: 0;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-rendering: geometricprecision;
+  text-transform: uppercase;
+  transition: opacity 300ms cubic-bezier(.694, 0, 0.335, 1),background-color 100ms cubic-bezier(.694, 0, 0.335, 1),color 100ms cubic-bezier(.694, 0, 0.335, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+
+.button-form:before {
+  animation: opacityFallbackOut .5s step-end forwards;
+  backface-visibility: hidden;
+  background-color: #ff7272b6;
+  clip-path: polygon(-1% 0, 0 0, -25% 100%, -1% 100%);
+  content: "";
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transform: translateZ(0);
+  transition: clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1), -webkit-clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1);
+  width: 100%;
+  border-radius: 5px;
+}
+
+.button-form:hover:before {
+  animation: opacityFallbackIn 0s step-start forwards;
+  clip-path: polygon(0 0, 101% 0, 101% 101%, 0 101%);
+}
+
+.button-form:after {
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+
+.button-form:disabled{
+  border: 1px solid #999999;
+  background-color: #929292;
+  color: #666666;
+}
+
+
+
+
+
+/* GAME */
+
+.game-header {
+  display: flex;
+  color: #ffffff;
+  flex-direction: column;
+  align-items: center;
+  min-height: 40vh;
+  min-width: 50vh;
+  max-width: 500px;
+  text-align: center;
+  margin: 0 auto;
+  margin-top:5px;
+  /* margin-top: 10%; */
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.352);
+  box-shadow: rgba(249, 246, 246, 0.24) 0px 3px 8px;  backdrop-filter: blur(10px);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  font-size: 20px;
+  border-radius: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.178);
+}
+
+img{
+  border-radius: 50%;
+}
+
+.score{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(22,35,43);
+  backdrop-filter: blur(10px);
+  color:#e10820;
+  font-weight: 800 bold;
+  -webkit-backdrop-filter: blur(5px);
+  font-size: 20px;
+  max-height: 200px;
+  max-width: 200px;
+  height:50px;
+  text-align: center;
+  width:120px;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.164);
+}
+
+.game-texts{
+  display: flex;
+  color: #ffffff;
+  flex-direction: column;
+  align-items: center;
+  min-height: 45vh;
+  min-width: 50vh;
+  max-width: 900px;
+  text-align: center;
+  margin: 0 auto;
+  margin-top:5px;
+  /* margin-top: 10%; */
+  justify-content: center;
+  background: rgba(227, 9, 31, 0);
+  box-shadow: rgba(249, 246, 246, 0.24) 0px 3px 8px;  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(5px);
+  font-size: 20px;
+  border-radius: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.178);
+}
+
+.game-timer{
+  color: white;
+}
+
+.trivia-font{
+  font-family: 'Press Start 2P', cursive;
+  font-size: 20px;
+}
+
+.font-black{
+  color: rgb(255, 255, 255);
+  font-size: 25px;
+}
+
+.font-red{
+  color: #ff7272db;
 }
