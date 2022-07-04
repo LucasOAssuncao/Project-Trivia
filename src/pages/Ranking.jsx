@@ -35,26 +35,28 @@ class Ranking extends React.Component {
     const { ranking } = this.state;
     return (
       <div>
-        <h1 data-testid="ranking-title">Ranking</h1>
-        {ranking
+        <div className="ranking-father">
+          <h1 data-testid="ranking-title" className="ranking-text">Ranking</h1>
+          {ranking
           && ranking.sort(
             (a, b) => parseFloat(b.score) - parseFloat(a.score),
           ).map(({ name, score, picture }, index) => (
-            <div key={ index }>
+            <div className="ranking-positions trivia-font" key={ index }>
               <img src={ picture } alt={ name } />
               <p data-testid={ `player-name-${index}` }>{name}</p>
               <p data-testid={ `player-score-${index}` }>{score}</p>
             </div>
           ))}
-        <div>
-          <button
-            type="button"
-            data-testid="btn-go-home"
-            onClick={ this.resetScore }
-          >
-            Play Again
-          </button>
+          <div />
         </div>
+        <button
+          className="button-form padding-button"
+          type="button"
+          data-testid="btn-go-home"
+          onClick={ this.resetScore }
+        >
+          Play Again
+        </button>
       </div>
     );
   }

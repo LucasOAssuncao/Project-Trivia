@@ -15,36 +15,41 @@ class Feedback extends React.Component {
 
     return (
       <div>
-        <header>
-          <p data-testid="feedback-text">Feedback</p>
+        <header className="game-header">
           <img
             src={ `https://www.gravatar.com/avatar/${email}` }
             alt="imagem de avatar"
             data-testid="header-profile-picture"
           />
           <h3 data-testid="header-player-name">{name}</h3>
-          <h4 data-testid="header-score">{score}</h4>
+          <h4 data-testid="header-score" className="score trivia-font">{score}</h4>
         </header>
-        <main>
-          <h1 data-testid="feedback-text">
+        <main className="game-texts margin-top">
+          <h1 data-testid="feedback-text" className="h1-style">
             {rightAnswers < +'3' ? 'Could be better...' : 'Well Done!'}
           </h1>
-          <h2 data-testid="feedback-total-score">{score}</h2>
-          <h2 data-testid="feedback-total-question">{rightAnswers}</h2>
-          <button
-            type="button"
-            data-testid="btn-play-again"
-            onClick={ this.resetScore }
-          >
-            Play Again
-          </button>
-          <button
-            type="button"
-            data-testid="btn-ranking"
-            onClick={ () => history.push('/ranking') }
-          >
-            Ranking
-          </button>
+          <div className="score-father trivia-font">
+            <h2 data-testid="feedback-total-score">{`Pontos: ${score}`}</h2>
+            <h2 data-testid="feedback-total-question">{`Acertos:  ${rightAnswers}`}</h2>
+          </div>
+          <div className="buttons-feedback-father">
+            <button
+              className="button-form padding-button"
+              type="button"
+              data-testid="btn-play-again"
+              onClick={ this.resetScore }
+            >
+              Play Again
+            </button>
+            <button
+              className="button-form padding-button"
+              type="button"
+              data-testid="btn-ranking"
+              onClick={ () => history.push('/ranking') }
+            >
+              Ranking
+            </button>
+          </div>
         </main>
       </div>
     );

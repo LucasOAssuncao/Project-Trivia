@@ -142,34 +142,38 @@ class Game extends React.Component {
           >
             {questions[index].category}
           </h1>
-          <p data-testid="question-text">
+          <p data-testid="question-text" className="p-style">
             {this.decodeEntity(questions[index].question)}
           </p>
-          <div data-testid="answer-options">
-            {answersBtns.map((e, i) => (
-              <button
-                key={ e.index }
-                data-testid={
-                  e.index === +'4'
-                    ? 'correct-answer'
-                    : `wrong-answer-${e.index}`
-                }
-                type="button"
-                className={ `answers ${this.correctAnswer(i)}` }
-                onClick={ this.incrementScore }
-              >
-                {e.element}
-              </button>
-            ))}
+          <div data-testid="answer-options" className="answer-options">
+            <div className="answer-father">
+              {answersBtns.map((e, i) => (
+                <button
+                  key={ e.index }
+                  data-testid={
+                    e.index === +'4'
+                      ? 'correct-answer'
+                      : `wrong-answer-${e.index}`
+                  }
+                  type="button"
+                  className={ `answers ${this.correctAnswer(i)}` }
+                  onClick={ this.incrementScore }
+                >
+                  {e.element}
+                </button>
+              ))}
+            </div>
             {respondido && (
-              <button
-                className="button-form"
-                type="button"
-                data-testid="btn-next"
-                onClick={ this.btnNext }
-              >
-                Next
-              </button>
+              <div>
+                <button
+                  className="button-form"
+                  type="button"
+                  data-testid="btn-next"
+                  onClick={ this.btnNext }
+                >
+                  Next
+                </button>
+              </div>
             )}
           </div>
         </div>
